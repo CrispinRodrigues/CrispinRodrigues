@@ -1,0 +1,91 @@
+#include <stdio.h>
+int n,i, j,visited[10], queue[10], front =-1, rear =-1;
+intadj[10][10];
+voidbfs(int v)
+{
+for(i=1;i<= n;i++)
+if(adj[v][i]&&!visited[i])
+queue[++rear]=i;
+if(front <= rear)
+{
+visited[queue[front]]=1;
+bfs(queue[front++]);
+}}
+voidmain()
+{
+int v;
+printf("Enter the number of vertices: ");
+scanf("%d",&n);
+for(i=1;i<= n;i++)
+{
+queue[i]=0;
+visited[i]=0;
+}
+printf("Enter graph data in matrix form: \n");
+for(i=1;i<= n;i++)
+for(j =1; j <= n;j++)
+scanf("%d",&adj[i][j]);
+printf("Enter the starting vertex: ");
+scanf("%d",&v);
+bfs(v);
+printf("The node which are reachable are: \n");
+for(i=1;i<= n;i++)
+if(visited[i])
+printf("%d\t",i);
+else
+printf("BFS is not possible. Not all nodes are reachable");
+return0;
+}
+
+
+#include<stdio.h>
+#include<conio.h>
+int K[10],N=10;
+merge(int low, int mid, int high)
+{
+int i=low, j=mid+1, l=0, temp[N];
+while (i<=mid && j<=high){
+if (K[i]<K[j]){
+temp[l]=K[i];
+l++;
+i++;
+}
+else{
+temp[l]=K[j];
+l++;
+j++;
+}
+if (i>mid)
+while (j<=high){
+temp[l]=K[j];
+l++;
+j++;
+}
+else
+while (i<=mid){
+temp[l]=K[i];
+l++;
+j++:
+}
+for (m=0; m<=l; m++)
+K[low+m]=temp[m];
+}
+mergesort(int low, int high)
+{
+int mid;
+if (low<high)
+{
+mid=(low+high)/2;
+mergesort(low,mid);
+mergesort(mid+1, high);
+merge(low, mid, high);
+} }
+main(){
+int i;
+printf(“\nEnter the values);
+for(i=0;i<N;i++)
+scanf(‘%d”,&K[i]);
+mergesort(0,N-1);
+printf(“\nThe Sorted Values”);
+for(i=0;i<N;i++)
+printf(‘%d”,K[i]);
